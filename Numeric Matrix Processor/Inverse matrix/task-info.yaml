@@ -1,0 +1,714 @@
+type: edu
+custom_name: stage6
+files:
+- name: src/processor/Main.java
+  visible: true
+  text: |
+    package processor;
+
+    public class Main {
+        public static void main(String[] args) {
+            System.out.println("Hello World!");
+        }
+    }
+  learner_created: false
+- name: test/NumericMatrixProcessorTest.java
+  visible: false
+  text: |
+    import org.hyperskill.hstest.stage.StageTest;
+    import org.hyperskill.hstest.testcase.CheckResult;
+    import org.hyperskill.hstest.testcase.TestCase;
+
+    import java.util.ArrayList;
+    import java.util.Arrays;
+    import java.util.List;
+
+    import static java.lang.Math.abs;
+
+
+    class TestClue {
+
+        String feedback;
+        ArrayList<Double> answers;
+
+        TestClue(String feedback, Double[] answers) {
+            this.feedback = feedback;
+            this.answers = new ArrayList<>(Arrays.asList(answers));
+        }
+    }
+
+    public class NumericMatrixProcessorTest extends StageTest<TestClue> {
+
+        @Override
+        public List<TestCase<TestClue>> generate() {
+            return List.of(
+                new TestCase<TestClue>()
+                    .setAttach(new TestClue(
+                        "Checking if matrices adding algorithm is correct",
+                        new Double[]{
+                            7d, 13d, 132d,
+                            17d, 23d, 45d,
+                            65d, 57d, 78d
+                        }))
+                    .setInput(
+                        "1\n"+
+                            "3 3\n" +
+                            "3 4 55\n" +
+                            "4 1 1\n" +
+                            "9 0 0\n" +
+                            "3 3\n" +
+                            "4 9 77\n" +
+                            "13 22 44\n" +
+                            "56 57 78\n" +
+                            "0"),
+
+                new TestCase<TestClue>()
+                    .setAttach(new TestClue(
+                        "Checking if matrices adding algorithm is correct",
+                        new Double[]{
+                            43.13d, 911.62d, 1311.8d, 136.53d,
+                            -4.2d, 141.1d, -1.09d, 1421.6d,
+                            230.33d, 114.2d, 100.7d, 990.4d,
+                            956.72d, 168.94d, 112.16d, 27.0d
+                        }))
+                    .setInput(
+                        "1\n"+
+                            "4 4\n" +
+                            "-0.3 677.4 435.2 123.33\n" +
+                            "1.3 141.4 0.11 1411.4\n" +
+                            "231.33 113.4 99.9 999.9\n" +
+                            "1002.22 123.44 55.66 13.3\n" +
+                            "4 4\n" +
+                            "43.43 234.22 876.6 13.2\n" +
+                            "-5.5 -0.3 -1.2 10.2\n" +
+                            "-1.0 0.8 0.8 -9.5\n" +
+                            "-45.5 45.5 56.5 13.7\n" +
+                            "0"),
+
+                new TestCase<TestClue>()
+                    .setAttach(new TestClue(
+                        "Checking if multiplication matrix on constant algorithm is correct",
+                        new Double[]{
+                            187d, 3978d, 7548d,
+                            7752d, 5831d, 3774d,
+                            16949d, 7752d, 7752d
+                        }))
+                    .setInput(
+                        "2\n" +
+                            "3 3\n" +
+                            "11 234 444\n" +
+                            "456 343 222\n" +
+                            "997 456 456\n" +
+                            "17\n" +
+                            "0"),
+
+                new TestCase<TestClue>()
+                    .setAttach(new TestClue(
+                        "Checking if multiplication matrix on constant algorithm is correct",
+                        new Double[]{
+                            1123653d, 5933505d, 110927295d, 2365632d,
+                            1505049d, 8619594d, 25665531d, 3833274d,
+                            1366632d, 2598732d ,37999962d, 58303305d,
+                            11068143d, 9781653d ,13666653d ,13443321d
+                        }))
+                    .setInput(
+                        "2\n" +
+                            "4 4\n" +
+                            "10123 53455 999345 21312\n" +
+                            "13559 77654 231221 34534\n" +
+                            "12312 23412 342342 525255\n" +
+                            "99713 88123 123123 121111\n" +
+                            "111\n" +
+                            "0"),
+
+                new TestCase<TestClue>()
+                    .setAttach(new TestClue(
+                        "Checking if matrices multiplication algorithm is correct",
+                        new Double[]{
+                            45d, 113d, 11d, 266d,
+                            84d, 139d, 29d, 229d,
+                            45d, 49d, 35d, 100d,
+                            15d, 86d, 0d, 281d ,
+                        }))
+                    .setInput(
+                        "3\n" +
+                            "4 4\n" +
+                            "1 2 2 7\n" +
+                            "3 3 4 5\n" +
+                            "5 0 0 1\n" +
+                            "0 1 0 8\n" +
+                            "4 4\n" +
+                            "9 8 7 13\n" +
+                            "15 14 0 1\n" +
+                            "3 7 2 3\n" +
+                            "0 9 0 35\n" +
+                            "0"),
+
+                new TestCase<TestClue>()
+                    .setAttach(new TestClue(
+                        "Checking if matrices multiplication algorithm is correct",
+                        new Double[]{
+                            243d, 295d, 78d, 60d,
+                            724d, 798d, 2063d, 175d
+                        }))
+                    .setInput(
+                        "3\n" +
+                            "2 3\n" +
+                            "1 0 17\n" +
+                            "15 19 7\n" +
+                            "3 4\n" +
+                            "5 6 78 9\n" +
+                            "29 31 47 1\n" +
+                            "14 17 0 3\n" +
+                            "0"),
+
+                new TestCase<TestClue>()
+                    .setAttach(new TestClue(
+                        "Checking if matrices multiplication algorithm is correct",
+                        new Double[]{
+                            100d, 105d,
+                            130d, 43d,
+                            48d, 53d
+                        }))
+                    .setInput(
+                        "3\n" +
+                            "3 5\n" +
+                            "1 4 5 6 6\n" +
+                            "7 8 9 0 0\n" +
+                            "4 1 2 2 2\n" +
+                            "5 2\n" +
+                            "4 5\n" +
+                            "6 1\n" +
+                            "6 0\n" +
+                            "0 9\n" +
+                            "7 7\n" +
+                            "0"),
+
+                new TestCase<TestClue>()
+                    .setAttach(new TestClue(
+                        "Checking if matrices multiplication algorithm is correct",
+                        new Double[]{
+                            -3728.685d, 3752.621d, 4367.396d, 1074.785d,
+                            246.11d, -228.39d, -396.2d, 29.71d,
+                            73.32d, -67.679d, -87.43, 25.04d,
+                            -39.22d, 42.02d, 55.6d, -119.42d
+                        }))
+                    .setInput(
+                        "3\n" +
+                            "4 4\n" +
+                            "0.65 0.67 76.4 23.2\n" +
+                            "-0.7 -13.1 -7.2 9.2\n" +
+                            "-0.7 -5.5 -1.5 0.4\n" +
+                            "-1.0 12.6 0.8 -0.4\n" +
+                            "4 4\n" +
+                            "-5.5 -0.3 -1.2 10.2\n" +
+                            "-1.0 0.8 0.8 -9.5\n" +
+                            "-45.5 45.5 56.5 13.7\n" +
+                            "-10.7 11.9 2.2 1.2\n" +
+                            "0"),
+
+                new TestCase<TestClue>()
+                    .setAttach(new TestClue(
+                        "Checking if you can do more than one operation in a loop",
+                        new Double[]{
+                            -3728.685d, 3752.621d, 4367.396d, 1074.785d,
+                            246.11d, -228.39d, -396.2d, 29.71d,
+                            73.32d, -67.679d, -87.43, 25.04d,
+                            -39.22d, 42.02d, 55.6d, -119.42d,
+                            100d, 105d,
+                            130d, 43d,
+                            48d, 53d
+                        }))
+                    .setInput(
+                        "3\n" +
+                            "4 4\n" +
+                            "0.65 0.67 76.4 23.2\n" +
+                            "-0.7 -13.1 -7.2 9.2\n" +
+                            "-0.7 -5.5 -1.5 0.4\n" +
+                            "-1.0 12.6 0.8 -0.4\n" +
+                            "4 4\n" +
+                            "-5.5 -0.3 -1.2 10.2\n" +
+                            "-1.0 0.8 0.8 -9.5\n" +
+                            "-45.5 45.5 56.5 13.7\n" +
+                            "-10.7 11.9 2.2 1.2\n" +
+                            "3\n" +
+                            "3 5\n" +
+                            "1 4 5 6 6\n" +
+                            "7 8 9 0 0\n" +
+                            "4 1 2 2 2\n" +
+                            "5 2\n" +
+                            "4 5\n" +
+                            "6 1\n" +
+                            "6 0\n" +
+                            "0 9\n" +
+                            "7 7\n" +
+                            "0"),
+
+                new TestCase<TestClue>()
+                    .setAttach(new TestClue(
+                        "Checking if diagonal transposition algorithm is correct",
+                        new Double[]{
+                            1d, 6d, 4d,
+                            7d, 6d, 2d,
+                            7d, 4d, 1d,
+                        }))
+                    .setInput(
+                        "4\n" +
+                            "1\n" +
+                            "3 3\n" +
+                            "1 7 7\n" +
+                            "6 6 4\n" +
+                            "4 2 1\n" +
+                            "0"),
+
+                new TestCase<TestClue>()
+                    .setAttach(new TestClue(
+                        "Checking if diagonal transposition algorithm is correct",
+                        new Double[]{
+                            1d, 6d, 4d,
+                            7d, 6d, 5d,
+                            7d, 4d, 1d,
+                        }))
+                    .setInput(
+                        "4\n" +
+                            "1\n" +
+                            "3 3\n" +
+                            "1 7 7\n" +
+                            "6 6 4\n" +
+                            "4 5 1\n" +
+                            "0"),
+
+                new TestCase<TestClue>()
+                    .setAttach(new TestClue(
+                        "Checking if diagonal transposition algorithm is correct",
+                        new Double[]{
+                            1d, 6d, 4d,
+                            7d, 6d, 2d,
+                            7d, 4d, 1d,
+                        }))
+                    .setInput(
+                        "4\n" +
+                            "2\n" +
+                            "3 3\n" +
+                            "1 2 4\n" +
+                            "4 6 6\n" +
+                            "7 7 1\n" +
+                            "0"),
+
+                new TestCase<TestClue>()
+                    .setAttach(new TestClue(
+                        "Checking if diagonal transposition algorithm is correct",
+                        new Double[]{
+                            1d, 6d, 4d,
+                            7d, 6d, 5d,
+                            7d, 4d, 1d,
+                        }))
+                    .setInput(
+                        "4\n" +
+                            "2\n" +
+                            "3 3\n" +
+                            "1 5 4\n" +
+                            "4 6 6\n" +
+                            "7 7 1.0\n" +
+                            "0"),
+
+                new TestCase<TestClue>()
+                    .setAttach(new TestClue(
+                        "Checking if transposition algorithm is correct",
+                        new Double[]{
+                            2d, 4d, 5d, 6d,
+                            6d, 6d, 7d, 8d,
+                            5d, 0d, 0d, 1d,
+                            8d, 8d, 2d, 9d
+                        }))
+                    .setInput(
+                        "4\n" +
+                            "3\n" +
+                            "4 4\n" +
+                            "6 5 4 2\n" +
+                            "8 7 6 6\n" +
+                            "1 0 0 5.0\n" +
+                            "9 2 8 8\n" +
+                            "0"),
+
+                new TestCase<TestClue>()
+                    .setAttach(new TestClue(
+                        "Checking if transposition algorithm is correct",
+                        new Double[]{
+                            2d, 4d, 5d, 6d,
+                            6d, 6d, 7d, 8d,
+                            5d, 0d, 0d, 1d,
+                            8d, 8d, 2d, 9d
+                        }))
+                    .setInput(
+                        "4\n" +
+                            "4\n" +
+                            "4 4\n" +
+                            "8 8 2 9\n" +
+                            "5 0 0 1\n" +
+                            "6 6 7 8.0\n" +
+                            "2 4 5 6\n" +
+                            "0"),
+
+                new TestCase<TestClue>()
+                    .setAttach(new TestClue(
+                        "Checking if determinant algorithm is correct",
+                        new Double[]{
+                            31d
+                        }))
+                    .setInput(
+                        "5\n" +
+                            "3 3\n" +
+                            "1 2 3\n" +
+                            "4 5 7\n" +
+                            "10 22 23\n" +
+                            "0"),
+
+                new TestCase<TestClue>()
+                    .setAttach(new TestClue(
+                        "Checking if determinant algorithm is correct",
+                        new Double[]{
+                            45.2197d
+                        }))
+                    .setInput(
+                        "5\n" +
+                            "4 4\n" +
+                            "2.65 3.54 3.88 8.99\n" +
+                            "3.12 5.45 7.77 5.56\n" +
+                            "5.31 2.23 2.33 9.81\n" +
+                            "1.67 1.67 1.01 9.99\n" +
+                            "0"),
+
+                new TestCase<TestClue>()
+                    .setAttach(new TestClue(
+                        "Checking if inversion algorithm is correct",
+                        new Double[]{
+                            1.14717, 2.03717, 2.9711,
+                            2.19055, 4.52055, 7.20788,
+                            3.67009, 0.590087, 1.33819
+                        }))
+                    .setInput(
+                        "6\n" +
+                            "3 3\n" +
+                            "0.396796 -0.214938 0.276735\n" +
+                            "5.19655 -2.06983 -0.388886\n" +
+                            "-3.3797 1.50219 0.159794\n" +
+                            "0"),
+
+                new TestCase<TestClue>()
+                    .setAttach(new TestClue(
+                        "Checking if inversion algorithm is correct",
+                        new Double[]{
+                            0.396796, -0.214938, 0.276735, -0.5092,
+                            5.19655, -2.06983, -0.388886, -3.14252,
+                            -3.3797, 1.50219, 0.159794, 2.04842,
+                            -0.593332, 0.230065, 0.00259267, 0.50345
+                        }))
+                    .setInput(
+                        "6\n" +
+                            "4 4\n" +
+                            "2.65 3.54 3.88 8.99\n" +
+                            "3.12 5.45 7.77 5.56\n" +
+                            "5.31 2.23 2.33 9.81\n" +
+                            "1.67 1.67 1.01 9.99\n" +
+                            "0")
+            );
+        }
+
+
+        @Override
+        public CheckResult check(String reply, TestClue clue) {
+
+            try {
+
+                String[] strNumbers = reply.lines()
+                    .filter(line -> {
+                        line = line.strip();
+                        if (line.length() == 0) {
+                            return false;
+                        }
+                        for (char c : line.toCharArray()) {
+                            if (!(c == ' ' ||
+                                c >= '0' && c <= '9' ||
+                                c == '.' ||
+                                c == '-' || c == '+' ||
+                                c == 'e' || c == 'E')) {
+                                return false;
+                            }
+                        }
+                        return true;
+                    }).reduce("", (a, b) -> a + " " + b)
+                    .strip().split("\\s+");
+
+                double[] actual = Arrays.stream(strNumbers).mapToDouble(Double::parseDouble).toArray();
+
+                double[] expected =
+                    clue.answers.stream()
+                        .mapToDouble(e -> e)
+                        .toArray();
+                if (actual.length != expected.length) {
+                    return new CheckResult(false, clue.feedback);
+                }
+
+                for (int i = 0; i < actual.length; i++) {
+                    if (abs(actual[i] - expected[i]) > 0.01) {
+                        return new CheckResult(false, clue.feedback);
+                    }
+                }
+            }
+            catch (Exception ex) {
+                return new CheckResult(false, "Can't check the answer");
+            }
+
+            return CheckResult.correct();
+
+        }
+
+    }
+  learner_created: false
+- name: src/processor/Adder.java
+  visible: true
+  text: "package processor;\n\npublic class Adder {\n    \n    private double[][]\
+    \ add(String[][] one, String[][] two){\n\n        double[][] output = new double[one.length][one[0].length];\n\
+    \n        for(int i = 0; i < two.length; i++){\n\n            for(int j = 0; j\
+    \ < two[0].length; j++){\n\n                double k = Double.parseDouble(one[i][j])\
+    \ + Double.parseDouble(two[i][j]);\n                output[i][j] = k;\n\n    \
+    \        }\n\n\n        }\n\n        return output;\n    }\n\n\n    void getResult(){\n\
+    \n        System.out.print(\"Enter size of first matrix: \");\n        int[] first\
+    \ = new InputGetter().getInput();\n        System.out.println(first.length);\n\
+    \n        System.out.println(\"Enter first matrix:\");\n        Matrix one = new\
+    \ Matrix(first[0], first[1]);\n\n        System.out.print(\"Enter size of second\
+    \ matrix: \");\n        int[] second = new InputGetter().getInput();\n\n     \
+    \   if (first[0] != second[0] || first[1] != second[1]) {\n            System.out.println(\"\
+    The operation cannot be performed.\\n\");\n            return;\n        }\n\n\
+    \        System.out.println(\"Enter second matrix: \");\n        Matrix two =\
+    \ new Matrix(second[0], second[1]);\n\n        System.out.println(\"The result\
+    \ is:\");\n        new PrintMatrix().print(add(one.getGrid(), two.getGrid()));\n\
+    \        System.out.println(\"\");\n\n\n    }\n    \n    \n}\n"
+  learner_created: true
+- name: src/processor/Transposer.java
+  visible: true
+  text: "package processor;\n\npublic class Transposer {\n    \n    //main diagonal\n\
+    \    void transposeMain(){\n        getResult(new MainTransposer());\n    }  \
+    \  \n    \n    //side diagonal\n    void transposeSide(){\n        getResult(new\
+    \ SideTransposer());\n    }\n    \n    //vertical diagonal\n    void transposeVerticalDiagonal(){\n\
+    \        getResult(new VerticalLine());\n    }\n        \n    //horizontal line\n\
+    \    void transposeHorizontalLine(){\n        getResult(new HorizontalSide());\n\
+    \    }\n\n    private void getResult(Transpose transpose){\n\n        System.out.print(\"\
+    Enter matrix size: \");\n        int[] first_m = new InputGetter().getInput();\n\
+    \n        System.out.println(\"Enter matrix: \");\n        Matrix one = new Matrix(first_m[0],\
+    \ first_m[1]);\n\n        System.out.println(\"The result is: \");\n        new\
+    \ PrintMatrix().print(transpose.transpose(one));\n        System.out.println(\"\
+    \");\n\n    }\n\n    \n}\n"
+  learner_created: true
+- name: src/processor/MainTransposer.java
+  visible: true
+  text: "package processor;\n\npublic class MainTransposer implements Transpose{ \
+    \   \n\n    public double[][] transpose(Matrix first){\n        \n        String[][]\
+    \ grid = first.getGrid();\n\n        double[][] output = new double[grid[0].length][grid.length];\n\
+    \        \n        for(int i = 0; i < grid.length; i++){\n            \n     \
+    \       for(int j = 0; j < grid[i].length; j++){\n                \n         \
+    \       output[i][j] = Double.parseDouble(grid[j][i]);\n                \n   \
+    \         }\n            \n        }        \n        \n        return output;\n\
+    \        \n    }\n   \n    \n}\n"
+  learner_created: true
+- name: src/processor/HQ.java
+  visible: true
+  text: "package processor;\n\nimport java.util.Scanner;\n\npublic class HQ {\n\n\n\
+    \    void start() {\n\n        Scanner in = new Scanner(System.in);\n        int\
+    \ choice = -1;\n\n        do {\n\n            System.out.println(\"1. Add matrices\"\
+    );\n            System.out.println(\"2. Multiply matrix by a constant\");\n  \
+    \          System.out.println(\"3. Multiply matrices\");\n            System.out.println(\"\
+    4. Transpose matrix\");\n            System.out.println(\"5. Calculate a determinant\"\
+    );\n            System.out.println(\"0. Exit\");\n\n            String tmp = in.nextLine();\n\
+    \            if (tmp.length() == 0) continue;\n\n            String[] convert\
+    \ = tmp.split(\" \");\n\n            if (convert.length != 1) {\n            \
+    \    continue;\n            }\n\n            choice = Integer.parseInt(convert[0]);\n\
+    \            System.out.println(\"Your choice: \" + choice);\n\n            switch\
+    \ (choice) {\n\n                case 1:\n                    new Adder().getResult();\n\
+    \                    break;\n\n                case 2:\n                    new\
+    \ MultiplierByConstant().getResult();\n                    break;\n\n        \
+    \        case 3:\n                    new MultiplierOfMatrices().getResult();\n\
+    \                    break;\n\n                case 4:\n                    transposeStart();\n\
+    \                    break;\n\n                case 5:\n                    new\
+    \ Determinant().getResult();\n                    break;\n                   \
+    \ \n                case 0:\n                    break;\n\n                default:\n\
+    \                    System.out.println(\"Invalid command\\n\");\n           \
+    \         break;\n\n            }\n\n\n        } while (choice != 0);\n\n\n  \
+    \  }\n\n\n    void transposeStart() {\n\n        System.out.println(\"1. Main\
+    \ diagonal\");\n        System.out.println(\"2. Side diagonal\");\n        System.out.println(\"\
+    3. Vertical line\");\n        System.out.println(\"4. Horizontal line\");\n  \
+    \      \n        Scanner inputTranspose = new Scanner(System.in);\n        int\
+    \ choice = inputTranspose.nextInt();\n        System.out.println(\"Your choice:\
+    \ \" + choice);\n\n        switch (choice) {\n\n            case 1:\n        \
+    \        new Transposer().transposeMain();\n                break;\n\n       \
+    \     case 2:\n                new Transposer().transposeSide();\n           \
+    \     break;\n\n            case 3:\n                new Transposer().transposeVerticalDiagonal();\n\
+    \                break;\n\n            case 4:\n                new Transposer().transposeHorizontalLine();\n\
+    \                break;\n\n            default:\n                break;\n\n  \
+    \      }\n\n\n    }\n\n\n}\n"
+  learner_created: true
+- name: src/processor/PrintMatrix.java
+  visible: true
+  text: "package processor;\n\nimport java.util.List;\n\npublic class PrintMatrix\
+    \ {\n\n    void print(double[][] grid){\n\n        for (double[] ints : grid)\
+    \ {\n\n            for (int j = 0; j < grid[0].length; j++) {\n\n            \
+    \    System.out.print(ints[j] + \" \");\n\n            }\n\n            System.out.println(\"\
+    \");\n\n        }\n\n    }\n\n    void print(List<List<Double>> grid){\n\n   \
+    \     for (List<Double> integers : grid) {\n\n            for (int j = 0; j <\
+    \ grid.get(0).size(); j++) {\n\n                System.out.print(integers.get(j)\
+    \ + \" \");\n\n            }\n\n            System.out.println(\"\");\n\n    \
+    \    }\n\n    }\n    \n    \n}\n"
+  learner_created: true
+- name: src/processor/SideTransposer.java
+  visible: true
+  text: "package processor;\n\npublic class SideTransposer implements Transpose {\n\
+    \n    public double[][] transpose(Matrix first){\n\n        String[][] grid =\
+    \ first.getGrid();\n        int row = grid.length;\n        int col = grid[0].length;\n\
+    \n        double[][] output = new double[grid[0].length][grid.length];\n\n   \
+    \     for(int i = 0; i < grid.length; i++){\n\n            for(int j = 0; j <\
+    \ grid[i].length; j++){\n\n                output[i][j] = Double.parseDouble(grid[col\
+    \ - 1 - j][row - 1 - i]);\n\n            }\n\n        }\n\n        return output;\n\
+    \n    }\n\n\n    \n}\n"
+  learner_created: true
+- name: src/processor/Matrix.java
+  visible: true
+  text: "package processor;\n\nimport java.util.Scanner;\n\npublic class Matrix {\n\
+    \    \n    private final String[][] grid;\n    \n    public Matrix(int row, int\
+    \ col){\n        \n        this.grid = new String[row][col];\n        build(row);\n\
+    \        \n    }\n    \n    private void build(int row){\n\n        Scanner in\
+    \ = new Scanner(System.in);\n        for(int i = 0; i < row; i++){\n         \
+    \   \n            String r = in.nextLine();\n            this.grid[i] = r.split(\"\
+    \ \");\n            \n        }\n               \n    }\n    \n    public String[][]\
+    \ getGrid() {\n        return grid;\n    }\n}\n"
+  learner_created: true
+- name: src/processor/MultiplierOfMatrices.java
+  visible: true
+  text: "package processor;\n\nimport java.util.ArrayList;\nimport java.util.List;\n\
+    \npublic class MultiplierOfMatrices {\n\n    private List<List<Double>> multiply(Matrix\
+    \ first, Matrix second){\n                \n        List<List<Double>> output\
+    \ = new ArrayList<>();\n        List<Double> temp = new ArrayList<>();\n     \
+    \   String[][] one = first.getGrid();\n        String[][] two = second.getGrid();\n\
+    \        \n        for(int i = 0; i < one.length; i++){            \n        \
+    \                \n            for(int j = 0; j < two[i].length; j++){\n     \
+    \        \n                double sum = 0;\n                \n               \
+    \ for(int k = 0; k < two.length; k++){\n\n\n                    double _p = Double.parseDouble(one[i][k]);\n\
+    \                    double _q = Double.parseDouble(two[k][j]);\n            \
+    \        \n                    sum += (_p * _q);\n                    \n     \
+    \           }                \n                \n                temp.add(sum);\n\
+    \                \n            }\n           \n            output.add(temp);\n\
+    \            temp = new ArrayList<>();\n            \n        }        \n    \
+    \    \n        return output;\n        \n    }\n        \n    void getResult(){\n\
+    \n        System.out.print(\"Enter size of first matrix: \");\n        int[] first_m\
+    \ = new InputGetter().getInput();\n\n        System.out.println(\"Enter first\
+    \ matrix: \");\n        Matrix one_m = new Matrix(first_m[0], first_m[1]);\n\n\
+    \        System.out.print(\"Enter size of second matrix: \");\n        int[] second_m\
+    \ = new InputGetter().getInput();\n\n\n        System.out.println(\"Enter second\
+    \ matrix: \");\n        Matrix two_m = new Matrix(second_m[0], second_m[1]);\n\
+    \n        if (first_m[1] != second_m[0]) {\n            System.out.println(\"\
+    The operation cannot be performed.\\n\");\n            return;\n        }\n\n\
+    \        System.out.println(\"The result is: \");\n        new PrintMatrix().print(multiply(one_m,\
+    \ two_m));\n        System.out.println(\"\");\n\n\n    }\n    \n    \n}\n\n"
+  learner_created: true
+- name: src/processor/Determinant.java
+  visible: true
+  text: "package processor;\n\nimport javax.swing.*;\n\npublic class Determinant {\
+    \    \n    \n    private double calculateDeterminant(double[][] matrix){\n   \
+    \     \n        int row = matrix.length;        \n        \n        if(row ==\
+    \ 1) return matrix[0][0];\n        else if(row == 2) \n            return calculateDeterminant(matrix[0][0],\
+    \ matrix[0][1], matrix[1][0], matrix[1][1]);\n        else{\n            \n  \
+    \          double answer = 0;\n            for(int j = 0; j < row; j++){\n   \
+    \             \n                double cofactor = Math.pow(-1, j) * matrix[0][j]\
+    \ \n                        * calculateDeterminant(getSmallerMatrix(matrix, 0,\
+    \ j));    \n                answer += cofactor;\n            }\n             \
+    \           \n            return answer;\n        }\n              \n    }   \
+    \ \n   \n    private double calculateDeterminant(double a, double b, double c,\
+    \ double d){        \n        return (a * d) - (b * c);        \n    }\n     \
+    \ \n    private double[][] getSmallerMatrix(double[][] ogMatrix, int row, int\
+    \ column){\n        \n        double[][] newMatrix = new double[ogMatrix.length-1][ogMatrix.length-1];\n\
+    \        int x = 0, y = 0;\n        \n        for(int i = row + 1; i < ogMatrix.length;\
+    \ i++){\n            \n            for(int j = 0; j < ogMatrix[i].length; j++){\n\
+    \                \n                if(j == column) continue;                \n\
+    \                newMatrix[x][y++] = ogMatrix[i][j];\n                \n     \
+    \       }\n            x++;\n            y = 0;\n            \n        }\n   \
+    \     \n        return newMatrix;\n        \n    }\n\n    public void getResult(){\n\
+    \n        System.out.print(\"Enter matrix size: \");\n        int[] first_m =\
+    \ new InputGetter().getInput();\n\n        System.out.println(\"Enter matrix:\
+    \ \");\n        Matrix one = new Matrix(first_m[0], first_m[1]);\n        \n \
+    \       if(first_m[0] != first_m[1]){\n            System.out.println(\"Invalid\
+    \ size\");\n            return;\n        }\n        \n        double[][] output\
+    \ = convert(one);\n        \n        System.out.println(\"The result is: \");\n\
+    \        System.out.println(calculateDeterminant(output));\n        System.out.println(\"\
+    \");\n\n    }\n\n    private double[][] convert(Matrix one) {\n              \
+    \  \n        double[][] output = new double[one.getGrid().length][one.getGrid().length];\n\
+    \        for(int i = 0; i < output.length; i++)\n            for(int j = 0; j\
+    \ < output[i].length; j++)\n                output[i][j] = Double.parseDouble(one.getGrid()[i][j]);\n\
+    \        \n        return output;    \n            \n    }\n\n}\n"
+  learner_created: true
+- name: src/processor/MultiplierByConstant.java
+  visible: true
+  text: "package processor;\n\n\nimport java.util.Scanner;\n\npublic class MultiplierByConstant\
+    \ {\n\n    private double[][] multiply(String[][] grid, double multiplier) {\n\
+    \n        double[][] output = new double[grid.length][grid[0].length];\n\n   \
+    \     for (int i = 0; i < grid.length; i++)\n            for (int j = 0; j < grid[i].length;\
+    \ j++) {\n                output[i][j] = multiplier % 1 == 0 && Float.parseFloat(grid[i][j])\
+    \ % 1 == 0\n                        ? Integer.parseInt(grid[i][j]) * (int)multiplier\n\
+    \                        : Float.parseFloat(grid[i][j]) * multiplier;\n      \
+    \      }\n        return output;\n\n    }\n    \n    void getResult(){\n\n   \
+    \     Scanner in = new Scanner(System.in);\n        \n        System.out.print(\"\
+    Enter size of first matrix: \");\n        int[] first_c = new InputGetter().getInput();\n\
+    \n        System.out.println(\"Enter first matrix:\");\n        Matrix one_c =\
+    \ new Matrix(first_c[0], first_c[1]);\n\n        System.out.print(\"Enter constant:\
+    \ \");\n        String d = in.next();\n        double constant = Float.parseFloat(d);\n\
+    \n        System.out.println(\"The result is:\");\n        new PrintMatrix().print(multiply(one_c.getGrid(),\
+    \ constant));\n        System.out.println(\"\");\n        \n        \n    }\n\n\
+    }\n"
+  learner_created: true
+- name: src/processor/InputGetter.java
+  visible: true
+  text: "package processor;\n\nimport java.util.Scanner;\n\npublic class InputGetter\
+    \ {\n\n    public int[] getInput(){\n\n        Scanner in = new Scanner(System.in);\n\
+    \        String[] line = in.nextLine().split(\" \");\n\n        return new int[]{Integer.parseInt(line[0]),\
+    \ Integer.parseInt(line[1])};\n\n    }\n    \n}\n"
+  learner_created: true
+- name: src/processor/VerticalLine.java
+  visible: true
+  text: "package processor;\n\npublic class VerticalLine implements Transpose{\n\n\
+    \    public double[][] transpose(Matrix first){\n\n        String[][] grid = first.getGrid();\n\
+    \        int col = grid[0].length;\n\n        double[][] output = new double[grid[0].length][grid.length];\n\
+    \n        for(int i = 0; i < grid.length; i++){\n\n            for(int j = 0;\
+    \ j < grid[i].length; j++){\n\n                output[i][j] = Double.parseDouble(grid[i][col\
+    \ - 1 - j]);\n\n            }\n\n        }\n\n        return output;\n\n    }\n\
+    \    \n    \n}\n"
+  learner_created: true
+- name: src/processor/Transpose.java
+  visible: true
+  text: "package processor;\n\npublic interface Transpose {\n    \n    double[][]\
+    \ transpose(Matrix matrix);\n    \n}\n"
+  learner_created: true
+- name: src/processor/HorizontalSide.java
+  visible: true
+  text: "package processor;\n\npublic class HorizontalSide implements Transpose{\n\
+    \n    public double[][] transpose(Matrix first){\n\n        String[][] grid =\
+    \ first.getGrid();\n        int row = grid.length;\n      \n        double[][]\
+    \ output = new double[grid[0].length][grid.length];\n\n        for(int i = 0;\
+    \ i < grid.length; i++){\n\n            for(int j = 0; j < grid[i].length; j++){\n\
+    \n                output[i][j] = Double.parseDouble(grid[row - 1 - i][j]);\n\n\
+    \            }\n\n        }\n\n        return output;\n\n    }\n    \n    \n}\n"
+  learner_created: true
+- name: src/processor/Inverse.java
+  visible: true
+  learner_created: true
+- name: src/processor/CofactorMatrix.java
+  visible: true
+  learner_created: true
+- name: src/processor/AdjointMatrix.java
+  visible: true
+  learner_created: true
+feedback_link: https://hyperskill.org/projects/60/stages/328/implement#comment
+status: Solved
+feedback:
+  message: Well done! You finished the project. Select a new project on <a href="https://hyperskill.org/projects">JetBrains
+    Academy</a> to continue learning.
+  time: Thu, 17 Jun 2021 12:59:56 UTC
+record: -1

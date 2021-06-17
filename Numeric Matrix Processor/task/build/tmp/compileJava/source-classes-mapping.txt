@@ -1,0 +1,36 @@
+processor/Matrix.java
+ processor.Matrix
+processor/InputGetter.java
+ processor.InputGetter
+processor/MainTransposer.java
+ processor.MainTransposer
+processor/VerticalLine.java
+ processor.VerticalLine
+processor/HorizontalSide.java
+ processor.HorizontalSide
+processor/Transpose.java
+ processor.Transpose
+processor/SideTransposer.java
+ processor.SideTransposer
+processor/Main.java
+ processor.Main
+processor/MultiplierByConstant.java
+ processor.MultiplierByConstant
+processor/Inverse.java
+ processor.Inverse
+processor/PrintMatrix.java
+ processor.PrintMatrix
+processor/AdjointMatrix.java
+ processor.AdjointMatrix
+processor/Adder.java
+ processor.Adder
+processor/Determinant.java
+ processor.Determinant
+processor/MultiplierOfMatrices.java
+ processor.MultiplierOfMatrices
+processor/HQ.java
+ processor.HQ
+processor/CofactorMatrix.java
+ processor.CofactorMatrix
+processor/Transposer.java
+ processor.Transposer
